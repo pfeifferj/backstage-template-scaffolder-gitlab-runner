@@ -8,13 +8,13 @@ this is a scaffolder template for generating kubernetes gitlab runner custom res
 3. use the catalog-import function to add the component to your backstage (link to the template.yaml file!)
 
 ## troubleshooting
-if you get `not allowed` errors while importing the template, make sure your `app-config.yaml` allows Templates:
+if you get `not allowed` errors while importing the template, make sure your `app-config.yaml` allows templates:
 
 ```yaml
 catalog:
   (...)
   rules:
     - allow:
-        (,,,)
+        (...)
         - Template
 ```
