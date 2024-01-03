@@ -8,7 +8,7 @@ metadata:
     - gitlab
     - kubernetes
 spec:
-  owner: @pfeifferj
+  owner: '@pfeifferj'
   system: gitlab
   type: service
   parameters:
