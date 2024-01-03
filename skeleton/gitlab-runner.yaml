@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name:  gitlab-runner-secret-${{ values.runnerName }}
+  namespace: ${{ values.namespace }}
+type: Opaque
+stringData:
+  runner-registration-token: ${{ values.runnerToken }}
+---
+apiVersion: apps.gitlab.com/v1beta2
+kind: Runner
+metadata:
+spec:
+  config: ${{ values.runnerName }}-runner-config
+  gitlabUrl: ${{ values.gitlabUrl }}
+  token: ${{ values.runnerToken }}
+  tags: ${{ values.runnerTags }}
