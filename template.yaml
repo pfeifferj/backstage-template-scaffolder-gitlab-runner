@@ -1,0 +1,88 @@
+apiVersion: scaffolder.backstage.io/v1besta3
+kind: Template
+metadata:
+  name: gitlab-runner-deployment
+  title: GitLab runner deployment on Kubernetes
+  description: Deploys an instance of a GitLab runner custom resource to a traget cluster in a user-specified namespace.
+  tags:
+    - gitlab
+    - kubernetes
+spec:
+  owner: @pfeifferj
+  system: gitlab
+  type: service
+  parameters:
+    - title: GitLab Runner Configuration
+      required:
+        - authToken
+        - cluster
+        - gitlabUrl
+        - namespace
+        - runnerName
+        - runnerToken
+      properties:
+        authToken:
+          type: string
+          title: Kubernetes auth token
+          description: Personal or ServiceAccount Token used to apply resources.
+          ui:backstage:
+            review:
+              mask: '[MASKED]'
+        cluster:
+          type: string
+          title: Kubernetes Cluster
+          enum:
+            - https://api.ocp4-dev.josie.cloud:6443 # CHANGE ME
+            - https://api.ocp4-tst.josie.cloud:6443 # CHANGE ME
+            - https://api.ocp4-prd.josie.cloud:6443 # CHANGE ME
+          enumNames:
+            - dev cluster
+            - test cluster
+            - prod cluster
+        gitlabUrl:
+          type: string
+          title: URL for your GitLab instance.
+          description: 
+          default: gitlab.com
+        namespace:
+          type: string
+          title: Target Kubernetes Namespace
+          description: The Kubernetes Namespace the runner will be deployed to.        
+        runnerName:
+          type: string
+          title: Runner Name
+          description: Name used by the runner.
+        runnerTags:
+          type: string
+          title: Runner tags
+          description: Runner tags to control which jobs a runner can pick up.
+        runnerToken:
+          type: string
+          title: Runner Registration Token
+          description: Token used to register the runner with GitLab.
+          ui:backstage:
+            review:
+              mask: '[MASKED]'
+  steps:
+    - id: fetch-base
+      name: Create Resource from Template
+      action: fetch:template
+      input: 
+        url: ./skeleton
+        values:
+          gitlabUrl: ${{ parameters.gitlabUrl }}
+          namespace: ${{ parameters.namespace }}
+          runnerName: ${{ parameters.runnerName }}
+          runnerTags: ${{ parameters.runnerTags }}
+          runnerToken: ${{ parameters.runnerToken }}
+    - id: deploy-runner
+      name: Deploy GitLab Runner
+      action: custom:kubernetes-deploy
+      input:
+        authToken: ${{ parameters.authToken }}
+        clusterUrl: ${{ parameters.cluster }}
+        manifest: '.generated/gitlab-runner.yaml'
+  output:
+    links:
+      - url: '${{ parameters.gitlabUrl }}/admin/runners'
+        title: GitLab Runner Settings
