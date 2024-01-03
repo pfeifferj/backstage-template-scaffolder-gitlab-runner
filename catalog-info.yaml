@@ -5,7 +5,7 @@ metadata:
   annotations:
     github.com/project-slug: pfeifferj/backstage-template-scaffolder-gitlab-runner
 spec:
-  type: template
-  lifecycle: unknown
+  type: Template
+  lifecycle: production
   owner: infrastructure
   
