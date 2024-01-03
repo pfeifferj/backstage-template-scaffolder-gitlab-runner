@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: gitlab-runner-deployment
   title: GitLab runner deployment on Kubernetes
-  description: Deploys an instance of a GitLab runner custom resource to a traget cluster in a user-specified namespace.
+  description: Deploys an instance of a GitLab runner custom resource to a target cluster in a user-specified namespace.
   tags:
     - gitlab
     - kubernetes
