@@ -77,7 +77,7 @@ spec:
           runnerToken: ${{ parameters.runnerToken }}
     - id: deploy-runner
       name: Deploy GitLab Runner
-      action: custom:kubernetes-deploy
+      action: deploy:kubernetes
       input:
         authToken: ${{ parameters.authToken }}
         clusterUrl: ${{ parameters.cluster }}
