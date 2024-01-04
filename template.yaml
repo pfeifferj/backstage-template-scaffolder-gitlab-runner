@@ -69,7 +69,7 @@ spec:
       action: fetch:template
       input: 
         url: ./skeleton
-        targetPath: './generated',
+        outputPath: './generated',
         values:
           gitlabUrl: ${{ parameters.gitlabUrl }}
           namespace: ${{ parameters.namespace }}
