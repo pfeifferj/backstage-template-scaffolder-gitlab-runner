@@ -43,7 +43,7 @@ spec:
           type: string
           title: URL for your GitLab instance.
           description: 
-          default: gitlab.com
+          default: https://gitlab.com
         namespace:
           type: string
           title: Target Kubernetes Namespace
@@ -75,11 +75,6 @@ spec:
           runnerName: ${{ parameters.runnerName }}
           runnerTags: ${{ parameters.runnerTags }}
           runnerToken: ${{ parameters.runnerToken }}
-    - id: debug
-      name: debug
-      action: debug:log
-      input:
-        listWorkspace: true
     - id: deploy-runner
       name: Deploy GitLab Runner
       action: deploy:kubernetes
