@@ -64,9 +64,9 @@ spec:
             review:
               mask: '[MASKED]'
   steps:
-    - id: fetch-base
+    - id: generate-manifests
       name: Create Resource from Template
-      action: fetch:template
+      action: template:validate:kubernetes
       input: 
         url: ./skeleton
         outputPath: './generated',
