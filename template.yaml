@@ -86,7 +86,7 @@ spec:
       input:
         authToken: ${{ parameters.authToken }}
         clusterUrl: ${{ parameters.cluster }}
-        manifestDirectory: ./gitlab-runner.yaml
+        manifestDirectory: gitlab-runner.yaml
   output:
     links:
       - url: '${{ parameters.gitlabUrl }}/admin/runners'
