@@ -69,6 +69,7 @@ spec:
       action: fetch:template
       input: 
         url: ./skeleton
+        targetPath: ./generated
         values:
           gitlabUrl: ${{ parameters.gitlabUrl }}
           namespace: ${{ parameters.namespace }}
@@ -81,7 +82,7 @@ spec:
       input:
         authToken: ${{ parameters.authToken }}
         clusterUrl: ${{ parameters.cluster }}
-        manifest: ./gitlab-runner.yaml
+        manifest: ./generated/gitlab-runner.yaml
   output:
     links:
       - url: '${{ parameters.gitlabUrl }}/admin/runners'
