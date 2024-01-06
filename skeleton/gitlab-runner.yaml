@@ -10,6 +10,8 @@ stringData:
 apiVersion: apps.gitlab.com/v1beta2
 kind: Runner
 metadata:
+  name: ${{ values.runnerName }}
+  namespace: ${{ values.namespace }}
 spec:
   config: ${{ values.runnerName }}-runner-config
   gitlabUrl: ${{ values.gitlabUrl }}
