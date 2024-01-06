@@ -41,8 +41,8 @@ spec:
             - prod cluster
         gitlabUrl:
           type: string
-          title: URL for your GitLab instance.
-          description: 
+          title: GitLab instance
+          description: URL for your GitLab instance.
           default: https://gitlab.com
         namespace:
           type: string
