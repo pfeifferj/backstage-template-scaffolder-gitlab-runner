@@ -13,7 +13,7 @@ metadata:
   name: ${{ values.runnerName }}
   namespace: ${{ values.namespace }}
 spec:
-  config: ${{ values.runnerName }}-runner-config
+  imagePullPolicy: Always
   gitlabUrl: ${{ values.gitlabUrl }}
   token: ${{ values.runnerToken }}
   tags: ${{ values.runnerTags }}
