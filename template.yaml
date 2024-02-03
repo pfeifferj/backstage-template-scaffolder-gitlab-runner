@@ -75,12 +75,16 @@ spec:
           runnerName: ${{ parameters.runnerName }}
           runnerTags: ${{ parameters.runnerTags }}
           runnerToken: ${{ parameters.runnerToken }}
+    - id: read-manifest
+      name: Read manifest
+      action: read:file
     - id: deploy-runner
       name: Deploy GitLab Runner
       action: deploy:kubernetes
       input:
         authToken: ${{ parameters.authToken }}
         clusterUrl: ${{ parameters.cluster }}
+        manifest: ${{ steps.read-manifest.output.content }}
   output:
     links:
       - url: '${{ parameters.gitlabUrl }}/admin/runners'
