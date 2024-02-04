@@ -78,6 +78,8 @@ spec:
     - id: read-manifest
       name: Read manifest
       action: read:file
+      input:
+        path: gitlab-runner.yaml
     - id: deploy-runner
       name: Deploy GitLab Runner
       action: deploy:kubernetes
