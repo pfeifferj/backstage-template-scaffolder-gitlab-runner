@@ -86,7 +86,7 @@ spec:
       input:
         authToken: ${{ parameters.authToken }}
         clusterUrl: ${{ parameters.cluster }}
-        manifest: ${{ steps.read-manifest.output.content }}
+        manifest: ${{ steps['read-manifest'].output.content }}
   output:
     links:
       - url: '${{ parameters.gitlabUrl }}/admin/runners'
