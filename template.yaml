@@ -47,7 +47,10 @@ spec:
         namespace:
           type: string
           title: Target Kubernetes Namespace
-          description: The Kubernetes Namespace the runner will be deployed to.        
+          description: The Kubernetes Namespace the runner will be deployed to.
+          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+          maxLength: 63
+          ui:help: 'Invalid Namespace reference'
         runnerName:
           type: string
           title: Runner Name
